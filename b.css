@@ -1,0 +1,305 @@
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 0;  /* Removes default margin */
+    background-color: #f7f7f7; 
+    padding-top: 120px; /* Adjust content padding */
+    
+    
+}
+
+.header {
+    height: 40px;/* Adjust header height */
+    position: fixed;/* uzfiksuotas the linijas top of the page */
+    top: 0;/* Sulygiuoja antraštę pačioje peržiūros srities viršuje */
+    left: 0;/* Ensures the header starts from the left edge */
+    width: 100%;/*Padaro antraštę per visą puslapio ploti*/
+    background: #14591D; /* Dark green for header */
+    text-align: center; /* make txt in the Centers */
+    padding: 15px;/* Adds padding inside .header for spacing */
+    z-index: 1001; /* Ensure it stays above the navbar */
+    color: white;/* texo color  */
+    font-size: 48px;/* font-size of the header */
+}
+    
+   
+
+
+.nav { /* The nav/navigation bar juostos */
+    
+    position: fixed;/*fixes the bar and make stays visible while scrolling down*/
+    top: 70px; /* Adjust this so it appears below the header */
+    left: 0;/* Ensures the header starts from the left edge */
+    width: 100%;/*Padaro antraštę per visą puslapio ploti*/
+    /*height: 50px;*/
+    background: #72b01d;
+    padding: 4px;/*adds spacing viduje nav bar*/
+    display: flex;/* to align items in a row */
+    flex-wrap: wrap;
+    justify-content: center;/* Centers navigation links horizontally */
+    align-items: flex-end; 
+    z-index: 1000;/* nav bar stuck on top of other fings but below the header */
+}
+
+
+
+.nav a { /*kaip atrodis nav juosta*/
+    margin-bottom: 5px;
+    color: white; /*tex colar*/
+    text-decoration: none; /* pasalina underlining from lins */
+    padding: 10px 20px; /* Adds tarpas inside each link */
+    font-size: 18px; /* The font size increases*/
+    cursor: pointer; /* kai [elyte uzvedi */
+    
+}
+
+.nav a:hover { /* Uzvedus pelės zymekli virs , pakeiciamas narsymo nuorodos stilius*/
+    background: #3CB371; /* replaces the bac kground color to a lighter green */
+}
+
+:target { /*persoka  paspaudus nav*/
+    display: block;
+    position: relative;/*the padding & margin trick */
+    padding-top: 130px;  /* creating space above the heading so it's not hidden behind a fixed header/nav */
+    margin-top: -100px;  /* Pulls the element back but negative */
+  }
+
+.containeris { /* Styles the main containeris  */
+    max-width: 1200px; /* What width  containeris is*/
+    margin: auto; /* Centers the containeris size horizontaliai */
+    padding: 20px; /* Adds spacing inside the containeris */
+}
+
+.flowers { /* Styles the product grid */
+    display: grid; /* Uses Grid to arrange items */
+    grid-template-columns: repeat(3, 1fr);  /* Creates a three-column layout with equal width */
+    gap: 20px; /* Adds spacing between grid  */
+}
+
+.product { /* Styles individual flowers  squares */
+    background: white; /* background */
+    padding: 15px; /*  inside each flowers squares */
+    border-radius: 5px; /* apvalina  corners of the squares */
+    text-align: center; /* Text  will be in centers inside the flowers squares */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* A subtle shadow for a raised effect */
+}
+
+.modalinis {/* modalinis Styles */ 
+    display: none; /* paslepti the modalinis by default */
+    position: fixed;  /* Keeps the modalinis fixed in place */
+    z-index: 1000;  /* Ensures the modalinis is on top of other staf */
+    left: 0;  /* Positions it at the left most point */
+    top: 0;  /* Positions it at the top */
+    width: 100%; /* full width of the screen */
+    height: 100%; /* full height of the screen */
+    background: rgba(0,0,0,0.5); /* Adds a semi-transparent black background */
+}
+
+.modalinis-content {/* content inside the modalinis */
+    background: white;/*  background will be white */
+    padding: 20px;/* Adds padding inside tohe modalinis content */
+    margin: 5% auto; /* Centers the modalinis vertically with a top margin */
+
+    width: 40%;/* Sets the modalinis width to half the screen */
+    max-height: 80vh; /* Limit height to avoid overflowing */
+    border-radius: 5px; /*  Rounds  corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);/* Adds shadow effect */
+    overflow-y: auto; /* Enables scrolling when needed */
+}
+
+
+.close { /* Close button inside the modalinis */
+    float: right; /* lyguoja the close button to the desineje */
+    cursor: pointer; /* kai pelyte uzvedi pakeicia*/
+    font-size: 30px; /* Increases size */
+    font-weight: bold; /* button text bold */
+}
+
+
+button {
+    padding: 15px 30px; /* Bigger buttons */
+    font-size: 20px;/*rasto dydis*/
+    border: none; 
+    border-radius: 5px;
+    background-color: #228B22; /* Matching green */
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3CB371;/*pakeicia spalva i sia kai uzvedi*/
+}
+
+
+
+
+#checkout-modalinis {/* Initially hidden checkout */
+    display: none; /* Hides it by default */
+    position: fixed;/*fixed in place even when scrolling */
+    z-index: 1000;/*iskyla above other content */
+    left: 0;/*Aligns the modal to the left of the viewport */
+    top: 0;
+    width: 100%;/*up the full width of the screen */
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);/* Adds a semi-transparent dark bk*/
+    display: flex;/* to center conteninri*/
+    align-items: center;
+    justify-content: center;
+    /
+}
+
+
+#checkout-modalinis .modalinis-content {/* Checkout langas */
+    background: white;
+    padding: 20px;/*spacing*/
+    width: 40%;/* /*spacing*/
+    max-height: 80vh; /*  height to 80% of viewport height */
+    border-radius: 5px;/* Rounds  corners*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);/*  shadow effect */
+    overflow-y: auto; /* Enables vertical scrolling if content overflows */
+}
+
+
+#checkout-form {/* Checkout form styling */
+    display: flex;
+    flex-direction: column; /* Arranges elements in a vertical column */
+}
+
+#checkout-form label {
+    margin-top: 10px;/* Adds spacing above each label */
+}
+
+#checkout-form input {
+    padding: 8px;/*spacing*/
+    margin-top: 5px;/*spacing between labels*/
+    border: 1px solid #ccc; 
+    border-radius: 5px;/* Rounds corners */
+}
+
+
+#checkout-form button {/* Pay Now button */
+    margin-top: 15px;/*spacing above the button*/
+    padding: 10px;/*spacing*/
+    font-size: 18px;
+    background-color: #228B22;
+    color: white;/*text contrast */
+    border: none;
+    border-radius: 5px;/* Rounds button corners */
+    cursor: pointer;/* tutch pelyte ir pakeicia pointeris*/
+}
+
+#checkout-form button:hover {
+    background-color: #3CB371;/*button color:*/
+}
+
+.product img{ /*foto saze*/
+    width: 200px;
+    height: 255px;
+    object-fit: cover; /*make imagecotener fit */
+    border-radius: 5px;/* raun coners*/
+}
+
+
+.toast-container {
+    position: fixed;/*fixed in place even when scrolling */
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;/*iskyla above other conten*/
+    max-width: 300px;
+}
+
+/* Toast Message */
+.toast {
+    background-color: #333;
+    color: #fff;
+    padding: 12px 20px;/*spacing*/
+    border-radius: 5px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Show Toast */
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#summary-table { 
+    margin: 0 auto;             
+    border-collapse: collapse;  
+    width: 80%;                 
+  }
+
+  #summary-table th,  
+  #summary-table td { 
+    border: 1px solid #ccc;     
+    padding: 10px;              /*spacing*/
+    text-align: center;
+  }
+   
+ /* Make each basket item a horizontal row */
+.basket-item { /* or name it as you like */
+    display: flex;              /* horizontal layout */
+    align-items: center;        /* vertically center content */
+    justify-content: space-between; /* push text left, buttons right */
+    background: white;          /* optional background */
+    padding: 10px;              /* optional spacing */
+    margin: 8px 0;              /* small vertical gap between items */
+    border-radius: 5px;
+  }
+  
+  .basket-item-details {
+    font-size: 16px;            /* or whatever size suits you */
+    flex: 1;                    /* let details expand if needed */
+  }
+  
+  .basket-item-buttons {
+    display: flex;             /* horizontally group buttons */
+    gap: 10px;                 /* space between Remove/Save buttons */
+  }
+
+  /* Style each saved item container */
+#saved-later > div {
+    display: flex;              /* Put text & buttons on one row */
+    align-items: center;        /* Vertically center content */
+    justify-content: space-between; /* Text on the left, buttons on the right */
+    background: white;
+    padding: 10px;/*spacing*/
+    margin: 8px 0;
+    border-radius: 5px;
+}
+
+/* Style the two buttons */
+#saved-later button {
+    font-size: 14px;            /* or whatever size suits you */
+    flex: 1;
+    cursor: pointer;
+    margin-left: 10px;    /* Spacing between the text and first button */
+    gap: 10px;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none; /* Remove default */
+  border: 3px solid #ff9800;
+  box-shadow: 
+    0 0 0 6px rgba(255, 152, 0, 0.6), /* outer glow */
+    0 0 10px 4px rgba(255, 152, 0, 0.75); /* strong orange glow */
+  background-color: #fff8e1; /* bright background to contrast */
+  color: #000; /* make text pop */
+  font-weight: bold;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+
+.footer {
+
+    text-align: center;
+    position: relative;
+    padding: 15px;/*spacing*/
+    background-color: #14591D;
+    color: white;
+
+}

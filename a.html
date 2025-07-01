@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0" 
+  /><!--  conteinrtis mazina ekrana-->
+
+  <title>Moniko's Flowers</title>
+  <link rel="stylesheet" href="b.css" /> <!-- Link to external CSS file b.css -->
+</head>
+<body>
+
+  <div class="header" role="banner" aria-label="Website Header">Monika's Flowers</div><!-- heder    -->
+  <div class="nav"role="navigation" aria-label="Main Navigation"><!-- nev buttons  -->
+    <a href="#Bulbs" aria-label="Bulbs Section">Bulbs</a>
+    <a href="#Tubers" aria-label="Tubers Section">Tubers</a>
+    <a href="#Bushes" aria-label="Bushes Section">Bushes</a>
+
+     <!-- javascript:void(0); prevents page reload.
+         onclick calls the openSaved() function.
+         tabindex="0" makes it focusable for keyboard users.
+         aria-label for screen readers. -->
+   
+    <!--Button  open saved-later modal -->
+    <a href="javascript:void(0);" onclick="openSaved()" tabindex="0" aria-label="Open Saved for Later">
+      💾 Saved for Later (<span id="saved-count">0</span>)
+    </a>
+
+    <!-- Button open basket modal -->
+    <a href="javascript:void(0);" onclick="openBasket()" tabindex="0" aria-label="Open Shopping Basket">
+      🛒 Shopping Basket (<span id="basket-count">0</span>)
+    </a>
+  </div><!-- End of nav -->
+
+  <div class="containeris"> <!-- main conteineris -->
+    <h1 id="Bulbs">Bulbs</h1>
+    <div class="flowers" id="Tulips-flowers"></div>
+
+    <h1 id="Tubers">Tubers</h1>
+    <div class="flowers" id="Dahlias-flowers"></div>
+
+    <h1 id="Bushes">Bushes</h1>
+    <div class="flowers" id="Roses-flowers"></div>
+  </div>
+
+  <!-- Basket Modal hidden by default, shown when openBasket()-->
+  <div
+    id="basket-modalinis" 
+    class="modalinis"
+    role="dialog"
+    aria-modal="true"
+    tabindex="-1"
+  >
+<!--id= unik id for bascat class= css styling role = accisibility-->
+
+    <div class="modalinis-content"> <!--visible content -->
+      <span class="close" onclick="closeBasket()"  aria-label="Close Basket Modal">&times;</span> <!-- Close button for the basket modal -->
+      <h1 id="basket-modal-heading">🎁 Your Selections</h1>
+      <div id="basket"></div> <!-- Container for basket items -->
+      <p>Total Items: <span id="total-items">0</span></p>
+      <p>Total Cost: £<span id="total-cost">0</span></p>
+      <button onclick="openSummary()" aria-label="Place Your Order">Place Your Order</button>
+    </div>
+  </div>
+
+  <!-- Summary pries perkant -->
+  <div id="summary-modalinis" class="modalinis" style="display: none;" aria-labelledby="summary-modal-heading">
+    <div class="modalinis-content">
+      <span class="close" 
+      onclick="closeSummary()" 
+      aria-label="Close Summary Modal">&times;</span>
+      
+      <h1 id="summary-modal-heading">Order Summary</h1>
+      <table id="summary-table" aria-label="Order Summary" style="margin: 0 auto;"> <!-- sudeda informacija i lentele-->
+        <thead>
+          <tr><!-- Table header -->
+            <th scope="col">Item</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total (£)</th>
+          </tr>
+        </thead>
+
+        <tbody id="summary-table-body"></tbody><!-- Table body -->
+      </table >
+
+      <p>Total Items: <span id="summary-total-items">0</span></p>
+      <p>Total Cost: £<span id="summary-total-cost">0</span></p>
+      
+      <button onclick="proceedToPayment()" aria-label="Confirm and Pay">Confirm and Pay</button>
+      <!-- Button to payment -->
+    </div>
+  </div>
+
+<!--saved-later-->
+  <div
+    id="saved-modalinis"
+    class="modalinis"
+    role="dialog"
+    aria-modal="true"
+    tabindex="-1"
+    aria-labelledby="saved-modal-heading"
+  >
+    <div class="modalinis-content">
+      <span class="close" onclick="closeSaved()" aria-label="Close Saved Modal">&times;</span>
+      <h1 id="saved-modal-heading">💾 Saved for Later</h1>
+      <div id="saved-later"></div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkout-modalinis" class="modalinis" style="display: none;" aria-labelledby="checkout-modal-heading">
+    <div class="modalinis-content">
+      <span class="close" onclick="closeCheckout()" aria-label="Close Checkout Modal">&times;</span>
+      <h1 id="checkout-modal-heading">Place Your Order</h1>
+      <p>Enter your payment details below:</p>
+      <form id="checkout-form">
+        <label for="name">Full Name, which is on the Card:</label>
+        <input type="text" id="name" required />
+
+        <label for="card">Credit/Debit Card Number must be 16 digits:</label>
+        <input
+          type="text"
+          id="card"
+          maxlength="16"
+          pattern="\d{16}"
+          required aria-required="true"
+          
+        />
+
+        <label for="expiry">📅 Card Expiration Date</label>
+        <input type="month" id="expiry" required />
+
+        <label for="cvv">Card Verification Code must be 3 digits:</label>
+        <input type="text" id="cvv" maxlength="3"  pattern="\d{3}" required 
+        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 3)" />
+
+        <button type="submit">Complete Payment</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div> <!-- Toast Container: "Item added to basket").
+  -->
+
+  <!-- Your main JS code -->
+  <script src="c.js"></script>
+
+  <footer class="footer"  role="contentinfo">
+    <p>Monika Rogoziniene Student ID 2334768</p>
+  </footer>
+</body>
+</html>
+
